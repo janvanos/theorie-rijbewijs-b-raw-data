@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    border: 1px solid #000;
+    padding: 50px;
+    border-radius: 3px;
+}
+
+.container img {
+    margin: 0 auto;
+    display: block;
+    width: 75%;
+    padding: 50px;
+}
+
+.container .multiple{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.hidden {
+    visibility: hidden;
+}
