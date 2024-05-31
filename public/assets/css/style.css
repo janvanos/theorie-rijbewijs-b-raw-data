@@ -92,3 +92,44 @@ body {
 .pagination li.next a {
     width: 150px;
 }
+
+progress{
+    margin: 0 auto;
+    display: block;
+    height: 40px;
+    margin-bottom: 20px;
+    
+}
+progress[value] {
+    --w: 200px; /* the width*/
+    --color:  /* the progress color */
+      linear-gradient(90deg,#ff6161,#1ecd1e) 0/var(--w);
+    --background: lightgrey; /* the background color */
+  
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    width: var(--w);
+    border-radius: 10em;
+    background: var(--background);
+  }
+  progress[value]::-webkit-progress-bar {
+    border-radius: 10em;
+    background: var(--background);
+  }
+  progress[value]::-webkit-progress-value {
+    border-radius: 10em;
+    background: var(--color);
+  }
+  progress[value]::-moz-progress-bar {
+    border-radius: 10em;
+    background: var(--color);
+  }
+  
+  label {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    margin: 20px 0;
+  }

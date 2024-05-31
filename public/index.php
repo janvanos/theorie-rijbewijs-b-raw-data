@@ -59,6 +59,8 @@ if (isset($_GET['vraagID']) && is_numeric($_GET['vraagID'])) {
                 echo "placeholder.png";
             }
             ?>" alt="image">
+<progress value="10" max="10" id="progressBar"></progress>
+
             <?php
             if ($type == 1 || $type == 2) {
                 echo "<div class='multiple'>";
@@ -73,7 +75,7 @@ if (isset($_GET['vraagID']) && is_numeric($_GET['vraagID'])) {
                 echo "</div>";
             }
             ?>
-            <button onclick="showAnswer(this)">Klik hier voor het antwoord</button>
+            <button id="answer" onclick="showAnswer(this)">Klik hier voor het antwoord</button>
             <p id="antwoord" class="hidden"><?= $feedback ?></p>
 <ul class="pagination">
 <?php
@@ -117,6 +119,16 @@ if (isset($_GET['vraagID']) && is_numeric($_GET['vraagID'])) {
             }
 
         }
+
+        var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("answer").click();
+  }
+  document.getElementById("progressBar").value = timeleft-1;
+  timeleft -= 1;
+}, 1000);
     </script>
 <?php
    
