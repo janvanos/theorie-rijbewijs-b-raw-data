@@ -23,8 +23,72 @@ body {
 .container .multiple{
     margin-top: 50px;
     margin-bottom: 50px;
+    width: 75%;
+    margin-left: 13.5%;
+    margin-right: 13.5%;
+}
+
+.container .single {
+    width: 75%;
+    margin-left: 13.5%;
+    margin-right: 13.5%;
+}
+
+.container .single textarea {
+    width: 95%;
+    height: 100px;
+}
+
+.container button {
+    margin: 0 auto;
+    width: 200px;
+    font-size: 20px;
+    display: block;
 }
 
 .hidden {
     visibility: hidden;
+}
+
+.pagination{
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    list-style-type: none;
+    justify-content: center;
+    width: 85%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#antwoord {
+    width: 85%;
+    font-size: 20px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px;
+    color: rgb(8, 183, 8);
+}
+
+.pagination a{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.pagination li.active{
+    background-color: rgb(104, 104, 239);
+}
+.pagination li.active a {
+    color: #fff;
+}
+
+.pagination li.next a {
+    width: 150px;
 }

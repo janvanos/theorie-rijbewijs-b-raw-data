@@ -21,7 +21,7 @@ if (isset($_GET['vraagID']) && is_numeric($_GET['vraagID'])) {
 
     $data = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $jsonString), true);
 
-    // var_dump($data);
+    // var_dump(count($data));
 
     $question = $data[$vraagID]['question'];
     $image = $data[$vraagID]['image'];
@@ -52,19 +52,59 @@ if (isset($_GET['vraagID']) && is_numeric($_GET['vraagID'])) {
 
         ?>
             <h1><?= $question ?></h1>
-            <img src="assets/img/<?= $image ?>" alt="image">
+            <img src="assets/img/<?php
+            if(file_exists("assets/img/" . $image)){
+                echo $image; 
+            } else {
+                echo "placeholder.png";
+            }
+            ?>" alt="image">
             <?php
-            if ($type == 1) {
+            if ($type == 1 || $type == 2) {
                 echo "<div class='multiple'>";
                 foreach ($options as $option) {
+                    if($option != ""){
                     echo "<input type='radio' name='option' value='" . $option . "'>" . $option . "<br>";
-                }
+                }}
+                echo "</div>";
+            } else {
+                echo "<div class='single'>";
+                echo "<textarea></textarea>";
                 echo "</div>";
             }
             ?>
             <button onclick="showAnswer(this)">Klik hier voor het antwoord</button>
             <p id="antwoord" class="hidden"><?= $feedback ?></p>
-            <a href="?vraagID=<?= $vraagID + 1 ?>">Volgende vraag</a>
+<ul class="pagination">
+<?php
+
+
+    $total_pages = ceil(count($data));
+    
+    $links = "";
+    if ($total_pages >= 1 && $vraagID <= $total_pages) {
+         $i = max(1, $vraagID - 4);
+
+         if($i < $vraagID){
+         $links .= "<li class='next'><a href='?vraagID=$i' class='page-link'>Vorige vraag</a></li>";   
+        }
+                 
+        for (; $i < min($vraagID + 5, $total_pages); $i++) {
+            if($i==$vraagID){
+            $links .= "<li class='page-item active'><a href='?vraagID=$i' class='page-link'>$i</a></li>";   
+            }else{
+            $links .= "<li class='page-item'><a href='?vraagID=$i' class='page-link'>$i</a></li>";
+            }
+        }
+        $links .= "<li class='next'><a href='?vraagID=$i' class='page-link'>Volgende vraag</a></li>";   
+
+        echo $links;
+    }
+
+        
+            ?>
+</ul>
+           
     </div>
     <script>
         function showAnswer(e) {
@@ -79,6 +119,8 @@ if (isset($_GET['vraagID']) && is_numeric($_GET['vraagID'])) {
         }
     </script>
 <?php
+   
+        
         } ?>
 </body>
 
